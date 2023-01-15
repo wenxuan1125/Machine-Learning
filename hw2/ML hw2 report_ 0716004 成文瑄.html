@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        ML hw2 report: 0716004 成文瑄 - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.figma{display:table;position:relative;width:100%;padding-bottom:56.25%}.figma iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;border:1px solid #eee}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="ML-hw2-report-0716004-成文瑄" data-id="ML-hw2-report-0716004-成文瑄"><a class="anchor hidden-xs" href="#ML-hw2-report-0716004-成文瑄" title="ML-hw2-report-0716004-成文瑄"><span class="octicon octicon-link"></span></a><span>ML hw2 report: 0716004 成文瑄</span></h1><ol>
+<li>
+<p><span>Data Input</span></p>
+<ul>
+<li><span>I use pandas and numpy to input and store the datas.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+</code></pre>
+<ul>
+<li><span>Load the datas -&gt; df is a DataFrame.</span>
+<ul>
+<li><span>df’s row represents a sample.</span></li>
+<li><span>df’s column represents a feature.</span></li>
+<li><span>df’s index is the label of a sample.</span></li>
+</ul>
+</li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># load data</span>
+df = pd.read_csv(<span class="hljs-string">'D:/vscode-projects/Python-projects/ML/hw2/student-mat.csv'</span>, delimiter=<span class="hljs-string">';'</span>, index_col=<span class="hljs-string">'G3'</span>)  
+</code></pre>
+</li>
+<li>
+<p><span>Data Preprocessing</span></p>
+<ul>
+<li><span>Transform categorical features into one-hot representation</span>
+<ul>
+<li><span>only categorical features need to do one-hot representation.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># one-hot</span>
+df = pd.get_dummies(df, columns=[<span class="hljs-string">'school'</span>,<span class="hljs-string">'sex'</span>,<span class="hljs-string">'address'</span>,<span class="hljs-string">'famsize'</span>,<span class="hljs-string">'Pstatus'</span>,<span class="hljs-string">'Mjob'</span>,<span class="hljs-string">'Fjob'</span>,<span class="hljs-string">'reason'</span>,<span class="hljs-string">'guardian'</span>,
+                            <span class="hljs-string">'schoolsup'</span>,<span class="hljs-string">'famsup'</span>,<span class="hljs-string">'paid'</span>,<span class="hljs-string">'activities'</span>,<span class="hljs-string">'nursery'</span>,<span class="hljs-string">'higher'</span>,<span class="hljs-string">'internet'</span>,<span class="hljs-string">'romantic'</span>])
+</code></pre>
+</li>
+<li><span>Transform data format and shape so your model can process them.</span>
+<ul>
+<li><span>Seperate feature names, datas and labels from df. All of them are ‘numpy.ndarray’ now.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># numpy.ndarray</span>
+feature_names = df.columns.values
+datas = df.values
+datas = datas.astype(<span class="hljs-string">'float64'</span>)
+labels = df.index.values
+</code></pre>
+</li>
+<li><span>Shuffle the data</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> utils
+
+datas, labels = utils.shuffle(datas, labels)
+</code></pre>
+<ul>
+<li><span>Transform label format so you can do the required two tasks described below Data section.</span>
+<ul>
+<li><span>labels_2 -&gt; for binary classification, labels_5 -&gt; for 5-level classification</span></li>
+</ul>
+<pre><code class="python hljs">labels_2 = labels.copy()
+labels_5 = labels.copy()
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(labels.shape[<span class="hljs-number">0</span>]):
+    <span class="hljs-keyword">if</span> labels[i]&gt;=<span class="hljs-number">10</span>:
+        labels_2[i] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>:
+        labels_2[i] = <span class="hljs-number">0</span>
+
+    <span class="hljs-keyword">if</span> labels[i]&gt;=<span class="hljs-number">16</span>:
+        labels_5[i] = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">elif</span> labels[i]&gt;=<span class="hljs-number">14</span>:
+        labels_5[i] = <span class="hljs-number">2</span>
+    <span class="hljs-keyword">elif</span> labels[i]&gt;=<span class="hljs-number">12</span>:
+        labels_5[i] = <span class="hljs-number">3</span>
+    <span class="hljs-keyword">elif</span> labels[i]&gt;=<span class="hljs-number">10</span>:
+        labels_5[i] = <span class="hljs-number">4</span>
+    <span class="hljs-keyword">else</span>:
+        labels_5[i] = <span class="hljs-number">5</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Principal components analysis (PCA)</span></p>
+<ul>
+<li><span>Use Principal components analysis (PCA) for dimension reduction.</span>
+<ul>
+<li><span>Only training datas are used to compute Q in PCA.</span></li>
+<li><span>After Q is computed, both training datas and testing datas are applied dimention reduction.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.decomposition <span class="hljs-keyword">import</span> PCA
+
+pca = PCA(n_components=<span class="hljs-number">10</span>)
+pca.fit(train_datas)                        <span class="hljs-comment"># compute eigenvector and eigenvalue</span>
+train_datas = pca.transform(train_datas)    <span class="hljs-comment"># apply dimension reduction to train_datas</span>
+test_datas = pca.transform(test_datas)      <span class="hljs-comment"># apply dimension reduction to test_datas</span>
+</code></pre>
+</li>
+<li><span>Compare the results between using the original data and the dimension-reduced one, the original data sometimes gets better or equal performances to the dimension-reduced one. However, in average, the dimension-reduced one has better performances.</span>
+<ul>
+<li>
+<p><span>binary classification</span></p>
+<ul>
+<li>
+<p><span>Decision Tree</span></p>
+<ul>
+<li>
+<p><span>The original data</span><br>
+<img src="https://i.imgur.com/THRDYSD.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>The dimension-reduced one</span><br>
+<img src="https://i.imgur.com/jLiynwx.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Random Forest</span></p>
+<ul>
+<li>
+<p><span>The original data</span><br>
+<img src="https://i.imgur.com/9xol3Ei.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>The dimension-reduced one</span><br>
+<img src="https://i.imgur.com/mpcbzoz.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>KNN</span></p>
+<ul>
+<li>
+<p><span>The original data</span><br>
+<img src="https://i.imgur.com/pMhq3vp.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>The dimension-reduced one</span><br>
+<img src="https://i.imgur.com/vXYtLR2.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span>5-level classification</span></p>
+<ul>
+<li>
+<p><span>Decision Tree</span></p>
+<ul>
+<li>
+<p><span>The original data</span><br>
+<img src="https://i.imgur.com/US9tg5U.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>The dimension-reduced one</span><br>
+<img src="https://i.imgur.com/dIN0xqa.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Random Forest</span></p>
+<ul>
+<li>
+<p><span>The original data</span><br>
+<img src="https://i.imgur.com/aDBBXZK.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>The dimension-reduced one</span><br>
+<img src="https://i.imgur.com/NV7B8FW.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>KNN</span></p>
+<ul>
+<li>
+<p><span>The original data</span><br>
+<img src="https://i.imgur.com/mhmkRnG.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>The dimension-reduced one</span><br>
+<img src="https://i.imgur.com/eNbE8EV.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Model Construction</span></p>
+<ul>
+<li><span>The data consists of both categorical and numerical features, and you have to treat them differently.</span>
+<ul>
+<li><span>Categorical features -&gt; do one-hot representation, as listed in “2. Data Preprocessing”.</span></li>
+<li><span>Numerical features -&gt; do nothing (actually, I had standardized them, but I found it worsen the PCA. So I decided not to standardize them.)</span></li>
+</ul>
+</li>
+<li><span>Three models must be constructed, Decision Tree, Random Forest, and K-Nearest Neighbor.</span><pre><code class="python hljs">model = {<span class="hljs-string">'tree'</span>: tree.DecisionTreeClassifier(), <span class="hljs-string">'forest5'</span>: RandomForestClassifier(n_estimators = <span class="hljs-number">5</span>, random_state = <span class="hljs-number">0</span>),
+        <span class="hljs-string">'forest10'</span>: RandomForestClassifier(n_estimators = <span class="hljs-number">10</span>, random_state = <span class="hljs-number">0</span>), 
+        <span class="hljs-string">'forest15'</span>: RandomForestClassifier(n_estimators = <span class="hljs-number">15</span>, random_state = <span class="hljs-number">0</span>),
+        <span class="hljs-string">'knn3'</span>: KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>), <span class="hljs-string">'knn6'</span>: KNeighborsClassifier(n_neighbors=<span class="hljs-number">6</span>), <span class="hljs-string">'knn9'</span>: KNeighborsClassifier(n_neighbors=<span class="hljs-number">9</span>)}
+</code></pre>
+</li>
+</ul>
+<ol>
+<li>
+<p><span>Decision tree</span></p>
+<ul>
+<li><span>I use sklearn model, DecisionTreeClassifier(), which is implemented by an optimised version of the CART algorithm. CART algorithm uses Gini Index criterion to split a node to a sub-node.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> tree
+</code></pre>
+</li>
+<li>
+<p><span>Random forest</span></p>
+<ul>
+<li><span>I use sklearn model, RandomForestClassifier(), which is implemented by randomly selecting samples. In this classifier, there is a parameter, bootstrap, which can decide whether bootstrap samples are used when building trees. By default, bootstrap is True. If bootstrap is set to False, the whole dataset is used to build each tree.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> RandomForestClassifier
+</code></pre>
+<ul>
+<li><span>The difference between K-fold cross-validation and Random Forest</span>
+<ul>
+<li><span>K-fold cross-validation</span>
+<ul>
+<li><span>a method to separate training and validation data</span></li>
+<li><span>equally split the original dataset into k subdataset</span></li>
+<li><span>in one epoch, only one subdataset is used to be validation data, other k-1 subdatasets are used to be training data</span></li>
+<li><span>repeat k times until each subdataset has been treated as validation data</span></li>
+<li><span>average these k performances to be the final performance</span></li>
+</ul>
+</li>
+<li><span>Random forest</span>
+<ul>
+<li><span>an ensemble method of decision trees</span></li>
+<li><span>create n decision trees from randomly selected data</span></li>
+<li><span>all decision trees predict for each test datas</span></li>
+<li><span>the final prediction for a test data  comes from the vote of the maxmal-number prediction in the above n decision tree’s prediction</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span>The number of trees must be greater than or equal to 3. You need to try at least 3 different numbers of trees and compare the result</span>
+<ul>
+<li><span>I have tried n = 3, 6, 10, 14 (use binary classification pca-applied dataset)</span></li>
+<li><span>It seems that the higher ‘n’ is, the higher the accuracy is. (n from 3~10)</span></li>
+<li><span>However, when n is high enough, the accuracy doesn’t get higher no matter how ‘n’ increases. The accuracy is almost the same. (n&gt;=10)</span>
+<ul>
+<li><span>n = 3</span><br>
+<img src="https://i.imgur.com/EIwSujc.png" alt="" loading="lazy"></li>
+<li><span>n = 6</span><br>
+<img src="https://i.imgur.com/JvWJ7h5.png" alt="" loading="lazy"></li>
+<li><span>n = 10</span><br>
+<img src="https://i.imgur.com/V7wFtOA.png" alt="" loading="lazy"></li>
+<li><span>n = 14</span><br>
+<img src="https://i.imgur.com/oi3b4qs.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span>KNN</span></p>
+<ul>
+<li><span>I use sklearn model, KNeighborsClassifier()</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.neighbors <span class="hljs-keyword">import</span> KNeighborsClassifier
+</code></pre>
+<ul>
+<li><span>For the KNN model, you need to try at least 3 different K values and compare their results</span>
+<ul>
+<li><span>I have tried k = 1, 5, 10 (use binary classification pca-applied dataset)</span></li>
+<li><span>It seems that the higher ‘k’ is, the higher the accuracy is. (k from 1~10)</span></li>
+<li><span>However, when n is extremely high, the accuracy decreases very much because the neighbor who is far away has a negative influence on the vote. (e.g. k = 200)</span>
+<ul>
+<li>
+<p><span>k = 1</span><br>
+<img src="https://i.imgur.com/L2LG0yy.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>k = 5</span><br>
+<img src="https://i.imgur.com/rHnOfa2.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>k = 10</span><br>
+<img src="https://i.imgur.com/j4xxxbM.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>k = 200</span><br>
+<img src="https://i.imgur.com/KPGWr1q.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p><span>Validation</span></p>
+<ul>
+<li>
+<p><span>K-fold cross-validation with K=3</span></p>
+<ul>
+<li><span>Initialize Dictionary and List to storing for every model and their K-fold result</span></li>
+<li><span>Loop for 3 times, training datas and validation datas are not the same in every time</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+
+kf = KFold(n_splits=<span class="hljs-number">3</span>)
+
+model = {<span class="hljs-string">'tree'</span>: tree.DecisionTreeClassifier(), <span class="hljs-string">'forest5'</span>: RandomForestClassifier(n_estimators = <span class="hljs-number">5</span>, random_state = <span class="hljs-number">0</span>),
+            <span class="hljs-string">'forest10'</span>: RandomForestClassifier(n_estimators = <span class="hljs-number">10</span>, random_state = <span class="hljs-number">0</span>), 
+            <span class="hljs-string">'forest15'</span>: RandomForestClassifier(n_estimators = <span class="hljs-number">15</span>, random_state = <span class="hljs-number">0</span>),
+            <span class="hljs-string">'knn3'</span>: KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>), <span class="hljs-string">'knn6'</span>: KNeighborsClassifier(n_neighbors=<span class="hljs-number">6</span>), <span class="hljs-string">'knn9'</span>: KNeighborsClassifier(n_neighbors=<span class="hljs-number">9</span>)}
+precision = {<span class="hljs-string">'tree'</span>: [], <span class="hljs-string">'forest5'</span>: [], <span class="hljs-string">'forest10'</span>: [],<span class="hljs-string">'forest15'</span>: [],<span class="hljs-string">'knn3'</span>: [], <span class="hljs-string">'knn6'</span>: [], <span class="hljs-string">'knn9'</span>: []}
+recall = {<span class="hljs-string">'tree'</span>: [], <span class="hljs-string">'forest5'</span>: [], <span class="hljs-string">'forest10'</span>: [],<span class="hljs-string">'forest15'</span>: [],<span class="hljs-string">'knn3'</span>: [], <span class="hljs-string">'knn6'</span>: [], <span class="hljs-string">'knn9'</span>: []}
+accuracy = {<span class="hljs-string">'tree'</span>: [], <span class="hljs-string">'forest5'</span>: [], <span class="hljs-string">'forest10'</span>: [],<span class="hljs-string">'forest15'</span>: [],<span class="hljs-string">'knn3'</span>: [], <span class="hljs-string">'knn6'</span>: [], <span class="hljs-string">'knn9'</span>: []}
+mat = {<span class="hljs-string">'tree'</span>: [], <span class="hljs-string">'forest5'</span>: [], <span class="hljs-string">'forest10'</span>: [],<span class="hljs-string">'forest15'</span>: [],<span class="hljs-string">'knn3'</span>: [], <span class="hljs-string">'knn6'</span>: [], <span class="hljs-string">'knn9'</span>: []}
+
+<span class="hljs-comment"># label_2 without pca</span>
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(datas):
+    train_datas, test_datas = datas[train_index], datas[test_index]
+    train_labels, test_labels = labels_2[train_index], labels_2[test_index]
+
+    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> model.keys():
+
+        train_and_test(model[key], mat[key], precision[key], recall[key], accuracy[key], train_datas, train_labels, test_datas, test_labels)
+</code></pre>
+<ul>
+<li><span>After training and validation complete, compute confusion matrix, precision, recall and accuracy. Then store them in ‘List’ so that we can average them later</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train_and_test</span>(<span class="hljs-params">model, mat, precision, recall, accuracy, train_datas, train_labels, test_datas, test_labels</span>):</span> 
+    model.fit(train_datas, train_labels)
+    predicts = model.predict(test_datas)
+    mat.append(confusion_matrix(test_labels, predicts))
+
+    precision.append(metrics.precision_score(test_labels, predicts, average=<span class="hljs-literal">None</span>))
+    recall.append(metrics.recall_score(test_labels, predicts, average=<span class="hljs-literal">None</span>))
+    accuracy.append(metrics.accuracy_score(test_labels, predicts))
+</code></pre>
+<ul>
+<li><span>Averaging all folds’ performance</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">average_performance</span>(<span class="hljs-params">precision, recall, accuracy, mat</span>):</span>
+    precision = np.mean(precision, axis=<span class="hljs-number">0</span>)
+    recall = np.mean(recall, axis=<span class="hljs-number">0</span>)
+    accuracy = np.mean(accuracy, axis=<span class="hljs-number">0</span>)
+    mat = np.mean(mat, axis = <span class="hljs-number">0</span>)
+
+    <span class="hljs-keyword">return</span> precision, recall, accuracy, mat
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Results</span></p>
+<ul>
+<li><span>Obtain the performances of all experiment settings in tables</span>
+<ul>
+<li>
+<p><span>binary classification</span></p>
+<ul>
+<li>
+<p><span>Decision Tree</span></p>
+<ul>
+<li>
+<p><span>Without PCA</span><br>
+<img src="https://i.imgur.com/THRDYSD.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>With PCA</span><br>
+<img src="https://i.imgur.com/jLiynwx.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Random Forest</span></p>
+<ul>
+<li>
+<p><span>Without PCA</span><br>
+<img src="https://i.imgur.com/9xol3Ei.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>With PCA</span><br>
+<img src="https://i.imgur.com/mpcbzoz.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>KNN</span></p>
+<ul>
+<li>
+<p><span>Without PCA</span><br>
+<img src="https://i.imgur.com/pMhq3vp.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>With PCA</span><br>
+<img src="https://i.imgur.com/vXYtLR2.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span>5-level classification</span></p>
+<ul>
+<li>
+<p><span>Decision Tree</span></p>
+<ul>
+<li>
+<p><span>Without PCA</span><br>
+<img src="https://i.imgur.com/US9tg5U.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>With PCA</span><br>
+<img src="https://i.imgur.com/dIN0xqa.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Random Forest</span></p>
+<ul>
+<li>
+<p><span>Without PCA</span><br>
+<img src="https://i.imgur.com/aDBBXZK.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>With PCA</span><br>
+<img src="https://i.imgur.com/NV7B8FW.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>KNN</span></p>
+<ul>
+<li>
+<p><span>Without PCA</span><br>
+<img src="https://i.imgur.com/mhmkRnG.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>With PCA</span><br>
+<img src="https://i.imgur.com/eNbE8EV.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Comparison &amp; Conclusion</span></p>
+<ul>
+<li><span>The accuracy of binary classification is always better than the one of five-level classification because it is easier to predict.</span></li>
+<li><span>The parameter k of KNN and the parameter n of Random Forest infulence the accuracy. Usually, the highest accuracy of KNN and Random Forest in the parameter setting I had tried is higher than that of Decision Tree.</span></li>
+<li><span>The precision and the recall of each target vary a lot. I think maybe the inbalance in the dataset is the reason (take 5-level classification for example, the number of label-5 datas is much more than the number of label-1 datas).</span></li>
+</ul>
+</li>
+<li>
+<p><span>Questions</span></p>
+<ul>
+<li>
+<p><span>Decision Tree</span></p>
+<ul>
+<li>
+<p><span>Show the prediction and reasoning of one arbitrary sample in the testing set.</span></p>
+<ul>
+<li><span>I use binary classification dataset to re-train a Decision Tree model, and use hold-out validation for simplicity</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold, train_test_split
+
+<span class="hljs-comment"># train model</span>
+train_datas, test_datas, train_labels, test_labels = train_test_split(datas, labels_2, test_size=<span class="hljs-number">0.3</span>, random_state=<span class="hljs-number">1</span>)
+model = tree.DecisionTreeClassifier()
+model.fit(train_datas, train_labels)
+predicts = model.predict(test_datas)
+</code></pre>
+<ul>
+<li><span>Show the tree structure</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">import</span> pydotplus
+<span class="hljs-keyword">import</span> graphviz
+<span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> Image
+
+dot_data = tree.export_graphviz(model, 
+    out_file = <span class="hljs-literal">None</span>, 
+    feature_names = feature_names,
+    class_names = [<span class="hljs-string">'0'</span>,<span class="hljs-string">'1'</span>], 
+    rounded = <span class="hljs-literal">True</span>, proportion = <span class="hljs-literal">False</span>, 
+    precision = <span class="hljs-number">2</span>, filled = <span class="hljs-literal">True</span>, node_ids = <span class="hljs-literal">True</span>)
+graph = pydotplus.graph_from_dot_data(dot_data)  
+graph.write_png(<span class="hljs-string">'D:/vscode-projects/Python-projects/ML/hw2/tree_graph.png'</span>)
+Image(graph.create_png()) 
+</code></pre>
+<p><img src="https://i.imgur.com/xWGt2CX.png" alt="" loading="lazy"></p>
+<ul>
+<li><span>Show the decision path for the first sample in validation data</span></li>
+</ul>
+<pre><code class="python hljs">n_nodes = model.tree_.node_count
+children_left = model.tree_.children_left
+children_right = model.tree_.children_right
+feature = model.tree_.feature
+threshold = model.tree_.threshold
+
+node_indicator = model.decision_path(test_datas)
+leaf_id = model.apply(test_datas)
+
+sample_id = <span class="hljs-number">0</span>
+print(<span class="hljs-string">'Sample\'s feature values:'</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(test_datas[<span class="hljs-number">0</span>])):
+    <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(test_datas[<span class="hljs-number">0</span>]) - <span class="hljs-number">1</span>:
+        print( feature_names[i], <span class="hljs-string">':'</span>, test_datas[<span class="hljs-number">0</span>][i], <span class="hljs-string">'\n'</span>)
+    <span class="hljs-keyword">else</span>:
+        print( feature_names[i], <span class="hljs-string">':'</span>, test_datas[<span class="hljs-number">0</span>][i], end=<span class="hljs-string">'; '</span>)
+<span class="hljs-comment"># obtain ids of the nodes 'sample_id' goes through, i.e., row 'sample_id'</span>
+node_index = node_indicator.indices[
+    node_indicator.indptr[sample_id] : node_indicator.indptr[sample_id + <span class="hljs-number">1</span>]
+]
+
+print(<span class="hljs-string">'Rules used to predict sample {id}:'</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>=sample_id))
+<span class="hljs-keyword">for</span> node_id <span class="hljs-keyword">in</span> node_index:
+    <span class="hljs-comment"># continue to the next node if it is a leaf node</span>
+    <span class="hljs-keyword">if</span> leaf_id[sample_id] == node_id:
+        print(<span class="hljs-string">'arrived at decision node {node}'</span>.<span class="hljs-built_in">format</span>(node=node_id))
+        <span class="hljs-keyword">continue</span>
+
+    <span class="hljs-comment"># check if value of the split feature for sample 0 is below threshold</span>
+    <span class="hljs-keyword">if</span> test_datas[sample_id, feature[node_id]] &lt;= threshold[node_id]:
+        threshold_sign = <span class="hljs-string">"&lt;="</span>
+    <span class="hljs-keyword">else</span>:
+        threshold_sign = <span class="hljs-string">"&gt;"</span>
+
+    print(
+        <span class="hljs-string">'decision node {node} : (X_test[{sample}, {feature}] = {value}) '</span>
+        <span class="hljs-string">'{inequality} {threshold})'</span>.<span class="hljs-built_in">format</span>(
+            node=node_id,
+            sample=sample_id,
+            feature=feature[node_id],
+            value=test_datas[sample_id, feature[node_id]],
+            inequality=threshold_sign,
+            threshold=threshold[node_id],
+        )
+    )
+</code></pre>
+<p><img src="https://i.imgur.com/MFvfqmx.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>Random Forest</span></p>
+<ul>
+<li><span>Describe the difference between boosting and bagging</span>
+<ul>
+<li><span>Boosting</span>
+<ul>
+<li><span>An apporoach to decrease the bias</span></li>
+<li><span>For weak models</span></li>
+<li><span>Models are weighted based on their performance</span></li>
+<li><span>Models are trained sequentially</span></li>
+<li><span>Firstly, a model is built from the training data. Then the following models are built which try to correct the errors present in the previous model</span></li>
+<li><span>Every model is complementary with the previous one, which is done by re-sampling / Re-weighting</span></li>
+<li><span>Every new subset comprises the elements that were misclassified by previous models</span></li>
+</ul>
+</li>
+<li><span>Bagging</span>
+<ul>
+<li><span>An apporoach to decrease the variance and to avoid overfitting</span></li>
+<li><span>For strong models</span></li>
+<li><span>Each model has an equal weight</span></li>
+<li><span>Create several subsets of data from training samples chosen randomly with replacement</span></li>
+<li><span>A base model is created on each of these subsets of data</span></li>
+<li><span>Each model is trained in parallel from each training set and independent of each other</span></li>
+<li><span>The final predictions are determined by combining the predictions (by voting or by averaging) from all the models</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><span>KNN</span></p>
+<ul>
+<li>
+<p><span>Show the prediction and reasoning of one arbitrary sample in the testing set.</span></p>
+<ul>
+<li><span>I use 5-level classification PCA-applied dataset, whose feature dimesion is reduced to 2, to re-train a KNN model (K = 10), and use hold-out validation for simplicity.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># train the model</span>
+train_datas, test_datas, train_labels, test_labels = train_test_split(datas, labels_5, test_size=<span class="hljs-number">0.3</span>, random_state=<span class="hljs-number">1</span>)
+pca = PCA(n_components=<span class="hljs-number">2</span>)
+pca.fit(train_datas)
+
+train_datas = pca.transform(train_datas)
+test_datas = pca.transform(test_datas)
+all_datas = pca.transform(datas)
+
+model = KNeighborsClassifier(n_neighbors=<span class="hljs-number">10</span>)
+model.fit(train_datas, train_labels)
+</code></pre>
+<ul>
+<li><span>Compute the Euclidean distance between the first sample in validation data and each training data. The 10 training datas which have the smallest distance with the validation sample are 10-nearest-neighbor.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># compute knn distance</span>
+sample_data = test_datas[<span class="hljs-number">0</span>]
+
+distances = {}
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(train_datas)):
+    distances[i] = sqrt((train_datas[i][<span class="hljs-number">0</span>] - sample_data[<span class="hljs-number">0</span>])**<span class="hljs-number">2</span> + (train_datas[i][<span class="hljs-number">1</span>] - sample_data[<span class="hljs-number">1</span>])**<span class="hljs-number">2</span>) <span class="hljs-comment"># Euclidean distance</span>
+
+distances = <span class="hljs-built_in">sorted</span>(distances.items(), key=<span class="hljs-keyword">lambda</span> x:x[<span class="hljs-number">1</span>])        <span class="hljs-comment"># acquire the knn by sorting the distance </span>
+
+<span class="hljs-comment"># knn, k=10</span>
+knn_distances = distances[:<span class="hljs-number">10</span>]
+</code></pre>
+<ul>
+<li><span>Show KNN and their predict result</span></li>
+</ul>
+<pre><code class="python hljs">print(<span class="hljs-string">'knn: '</span>)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> knn_distances: 
+    print(<span class="hljs-string">'data id:'</span>, <span class="hljs-built_in">str</span>(i[<span class="hljs-number">0</span>]), <span class="hljs-string">' distance:'</span>, <span class="hljs-built_in">str</span>(i[<span class="hljs-number">1</span>]), <span class="hljs-string">' true label:'</span>, train_labels[i[<span class="hljs-number">0</span>]])
+    vote[train_labels[i[<span class="hljs-number">0</span>]]] += <span class="hljs-number">1</span>
+
+print(<span class="hljs-string">''</span>)
+print(<span class="hljs-string">'the true label of the sample: '</span>, test_labels[<span class="hljs-number">0</span>])
+print(<span class="hljs-string">'the predict label of the sample: '</span>, model.predict(sample_data.reshape(<span class="hljs-number">1</span>, -<span class="hljs-number">1</span>))[<span class="hljs-number">0</span>])
+</code></pre>
+<p><img src="https://i.imgur.com/FVeSmTP.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><span>Bonus: pick 2 features, draw and describe the KNN decision boundaries.</span></p>
+<ul>
+<li><span>I reduced the data’s dimension to 2 as I mentioned above, so these two features are picked to draw the KNN decision boundaries.</span></li>
+<li><span>Creates coordinate points and feed them into trained model to acquire their predict label.</span></li>
+<li><span>Use these predict labels to draw the boundary</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-keyword">from</span> matplotlib.colors <span class="hljs-keyword">import</span> ListedColormap
+
+<span class="hljs-comment"># Create color maps -&gt; boundary color</span>
+cmap_light = ListedColormap([<span class="hljs-string">'#ffdee0'</span>, <span class="hljs-string">'#f3f3cd'</span>, <span class="hljs-string">'#d1f4b7'</span>, <span class="hljs-string">'#ddf3ff'</span>, <span class="hljs-string">'#e3d9ff'</span>])
+
+<span class="hljs-comment"># Plot the decision boundary. For that, we will assign a color to each</span>
+<span class="hljs-comment"># point in the mesh [x_min, x_max]x[y_min, y_max].</span>
+x_min = all_datas[:, <span class="hljs-number">0</span>].<span class="hljs-built_in">min</span>() - <span class="hljs-number">1</span>
+x_max = all_datas[:, <span class="hljs-number">0</span>].<span class="hljs-built_in">max</span>() + <span class="hljs-number">1</span>
+y_min = all_datas[:, <span class="hljs-number">1</span>].<span class="hljs-built_in">min</span>() - <span class="hljs-number">1</span>
+y_max = all_datas[:, <span class="hljs-number">1</span>].<span class="hljs-built_in">max</span>() + <span class="hljs-number">1</span>
+
+<span class="hljs-comment"># step size in the mesh</span>
+delta = <span class="hljs-number">.5</span>
+xx, yy = np.meshgrid(np.arange(x_min, x_max, delta), np.arange(y_min, y_max, delta))
+<span class="hljs-comment"># np.ravel() flatten the matrix </span>
+<span class="hljs-comment"># np.c[m1, m2] zips corresponding element of the two row matrix m1, m2</span>
+Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+
+<span class="hljs-comment"># Put the result into a color plot</span>
+Z = Z.reshape(xx.shape)
+plt.figure()
+plt.pcolormesh(xx, yy, Z, cmap=cmap_light, shading=<span class="hljs-string">'auto'</span>)
+</code></pre>
+<ul>
+<li><span>Plot the samples of the orignal dataset to see whether our decision boundaries match the samples.</span></li>
+</ul>
+<pre><code class="python hljs"><span class="hljs-comment"># Plot also the datas points</span>
+st1 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">1</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">1</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'red'</span>)
+st2 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">2</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">2</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'yellow'</span>)
+st3 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">3</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">3</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'green'</span>)
+st4 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">4</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">4</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'blue'</span>)
+st5 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">5</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">5</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'purple'</span>)
+
+plt.xlim(xx.<span class="hljs-built_in">min</span>(), xx.<span class="hljs-built_in">max</span>())
+plt.ylim(yy.<span class="hljs-built_in">min</span>(), yy.<span class="hljs-built_in">max</span>())
+
+plt.show()
+</code></pre>
+<p><img src="https://i.imgur.com/my27eQ9.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+</li>
+<li>
+<p><span>PCA</span></p>
+<ul>
+<li><span>In 5-Level classification, reduce the data dimension to 2 using PCA and draw a scatter plot. You have to colorize the data points based on their labels.</span>
+<ul>
+<li><span>I use 5-level classification dataset whose dimesion is reduced to 2 by PCA as I mention in the above KNN part, which also meets the requirement here. So, I use the same data for this PCA part.</span></li>
+</ul>
+<pre><code class="python hljs">st1 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">1</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">1</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'red'</span>)
+st2 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">2</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">2</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'yellow'</span>)
+st3 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">3</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">3</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'green'</span>)
+st4 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">4</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">4</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'blue'</span>)
+st5 = plt.scatter(all_datas[labels_5 == <span class="hljs-number">5</span>, <span class="hljs-number">0</span>], all_datas[labels_5 == <span class="hljs-number">5</span>, <span class="hljs-number">1</span>], s=<span class="hljs-number">2.5</span>, color=<span class="hljs-string">'purple'</span>)
+
+plt.xlim(xx.<span class="hljs-built_in">min</span>(), xx.<span class="hljs-built_in">max</span>())
+plt.ylim(yy.<span class="hljs-built_in">min</span>(), yy.<span class="hljs-built_in">max</span>())
+plt.xlabel(<span class="hljs-string">'pricipal componenet I'</span>)
+plt.ylabel(<span class="hljs-string">'pricipal componenet II'</span>)
+plt.legend([st1, st2, st3, st4, st5], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])
+plt.show()
+</code></pre>
+<img src="https://i.imgur.com/7JHZXij.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li class=""><a href="#ML-hw2-report-0716004-成文瑄" title="ML hw2 report: 0716004 成文瑄">ML hw2 report: 0716004 成文瑄</a></li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#ML-hw2-report-0716004-成文瑄" title="ML hw2 report: 0716004 成文瑄">ML hw2 report: 0716004 成文瑄</a></li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
